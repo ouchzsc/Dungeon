@@ -6,6 +6,8 @@ namespace Assets.Program
 {
     class constants
     {
+        public const int heroID = 1;
+        public const float heroInitLife = 100;
         public const int mapW = 16;
         public const int mapH = 15;
         public const float unitLengh = 1;

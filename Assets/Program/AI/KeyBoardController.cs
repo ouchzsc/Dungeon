@@ -8,27 +8,27 @@ namespace Assets.Program.AI
     public class KeyBoardController:MonoBehaviour
     {
         bool isFrozen = false;
-        HeroModule heroModule;
+        AIModule heroModule;
 
         void Start()
         {
-            heroModule = GetComponent<HeroModule>();
+            heroModule = GetComponent<AIModule>();
         }
         void Update()
         {            
-            if(Input.GetKey(KeyCode.DownArrow))
+            if(Input.GetAxis("Vertical")<0)
             {
                 Walk(0, -1);
             }
-            else if (Input.GetKey(KeyCode.UpArrow))
+            else if (Input.GetAxis("Vertical") > 0)
             {
                 Walk(0, 1);
             }
-            else if (Input.GetKey(KeyCode.LeftArrow))
+            else if (Input.GetAxis("Horizontal") < 0)
             {
                 Walk(-1,0);
             }
-            else if (Input.GetKey(KeyCode.RightArrow))
+            else if (Input.GetAxis("Horizontal") > 0)
             {
                 Walk(1,0);
             }
@@ -41,7 +41,7 @@ namespace Assets.Program.AI
 
             transform.position += new Vector3(x, y);
 
-            StartCoroutine(Freeze(1/heroModule.velocity));
+            StartCoroutine(Freeze(1/heroModule.Velocity));
         }
         IEnumerator Freeze(float time)
         {
